@@ -12,12 +12,12 @@ public class Test {
 
     public static void main(String[] args) {
 
-        // /sdcard/migu/migu-2019-08-21-11-06-46.log
+        // /sdcard/asdas/asdasd-2019-08-21-11-06-46.log
         // 字符串截取
 
         // output ---> 2019-08-21-11-06-46
 
-        String s = "/sdcard/migu/migu-2019-08-21-11-06-46.log";
+        String s = "/sdcard/migu/asdas-2019-08-21-11-06-46.log";
 
         s = s.replace(".log", "");
 
@@ -30,11 +30,11 @@ public class Test {
         System.out.println(array[1] + "-" + array[2] + "-" + array[3] + "-" + array[4] + "-" + array[5] + "-" + array[6]);
 
         List<String> ts = new ArrayList<>();
-        ts.add("/sdcard/migu/21312312312.log");
-        ts.add("/sdcard/migu/migu-2019-08-25-11-06-46.log");
-        ts.add("/sdcard/migu/migu-2019-08-22-11-06-46.log");
-        ts.add("/sdcard/migu/migu-2019-08-28-11-06-46.log");
-        ts.add("/sdcard/migu/migu-2019-08-24-11-06-46.log");
+        ts.add("/sdcard/dasdsaasdasd/21312312312.log");
+        ts.add("/sdcard/asdas/sadasd-2019-08-25-11-06-46.log");
+        ts.add("/sdcard/asdas/asdas-2019-08-22-11-06-46.log");
+        ts.add("/sdcard/asdasa/asdas-2019-08-28-11-06-46.log");
+        ts.add("/sdcard/asdas/asdasdsa-2019-08-24-11-06-46.log");
 
         FileUtil.sortFilesNameList(ts);
 

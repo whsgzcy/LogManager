@@ -10,9 +10,9 @@ public class LogApplication extends Application {
 
         LogRecorder logRecorderError
                 = new LogRecorder.Builder(this)
-                .setLogFolderName("migu")
+                .setLogFolderName("asdasdsa")
                 .setLogFolderPath("/sdcard/migu")
-                .setLogFileNameSuffix("migu")
+                .setLogFileNameSuffix("asdasdsad")
                 .setLogFileSizeLimitation(10 * 1024)
                 .setLogLevel(2)
                 .build();

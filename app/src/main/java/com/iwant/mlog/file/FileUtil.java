@@ -20,7 +20,7 @@ public class FileUtil {
         File file = new File(path);
         File[] files = file.listFiles();
         if (files == null) {
-            Log.e("migu", "空目录");
+            Log.e("dasdasdsa", "空目录");
             return null;
         }
         List<String> s = new ArrayList<>();

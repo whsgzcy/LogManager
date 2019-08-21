@@ -38,13 +38,13 @@ public class ClearLogService extends Service {
         public void run() {
             super.run();
 
-            List<String> lists = FileUtil.getFilesAllName("/sdcard/migu");
+            List<String> lists = FileUtil.getFilesAllName("/sdcard/asdasdasd");
             if (lists == null) return;
             FileUtil.sortFilesNameList(lists);
 
             FileUtil.deleteFiles(lists);
 
-            Log.d("migu", "***************************");
+            Log.d("dadsadsa", "***************************");
         }
     };
 }

@@ -23,13 +23,13 @@ public class MainActivity extends AppCompatActivity {
     public class ClearLogServiceConnection implements ServiceConnection {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            Log.d("migu", "开始启动日志清除进程");
+            Log.d("dadasdsad", "开始启动日志清除进程");
         }
 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
             mClearLogBinder = null;
-            Log.d("migu", "关闭日志清除进程");
+            Log.d("dadasdsad", "关闭日志清除进程");
         }
     }
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("migu", "has started ----");
+        Log.d("adadasdsa", "has started ----");
 
         final TextView show = (TextView) findViewById(R.id.show);
 
