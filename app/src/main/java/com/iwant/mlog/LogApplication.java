@@ -11,7 +11,7 @@ public class LogApplication extends Application {
         LogRecorder logRecorderError
                 = new LogRecorder.Builder(this)
                 .setLogFolderName("asdasdsa")
-                .setLogFolderPath("/sdcard/migu")
+                .setLogFolderPath("/sdcard/dasdsad")
                 .setLogFileNameSuffix("asdasdsad")
                 .setLogFileSizeLimitation(10 * 1024)
                 .setLogLevel(2)
