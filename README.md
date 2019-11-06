@@ -1,5 +1,26 @@
 ## android 日志 收集器
 
+**日志追踪**
+
+如果有这么一个场景，对于1000(one thousand)台Android设备，每个设备 最多存储1G的log文件，那么日志的总量就是1000*1G(此处为最大值)，对于这么庞大的文件，不可能一个一个登上去查找日志，我们都知道，修复问题，可能修复的是一类问题。
+
+```
+主要部分
+...
+check_log()
+{
+    GAME_LIST=`ssh $HOSTCHECK $IP "grep -c "\"${WORDS}\"" /sdcard/xxx/*.log "`
+     
+    for line in $GAME_LIST
+    do
+       echo  $line
+    done
+    return 0
+}
+...
+
+```
+
 **需求**
 
 想象有这么一个场景，当线上的问题发生之后再去抓log，这时抓到的log很可能会对不上，这会对开发造成不小的影响，本文就是为了解决这个问题。
