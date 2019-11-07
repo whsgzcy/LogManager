@@ -30,4 +30,10 @@
         android:layout_height="wrap_content"
         android:text="删除" />
 
+    <Button
+        android:id="@+id/read_app_cpu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="读取性能数据" />
+
 </LinearLayout>

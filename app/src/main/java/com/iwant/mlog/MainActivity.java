@@ -3,6 +3,9 @@ package com.iwant.mlog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.media.AudioFormat;
+import android.media.AudioRecord;
+import android.media.MediaRecorder;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,10 +15,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.iwant.mlog.file.FileUtil;
+import com.iwant.mlog.manager.CMTManagerService;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    static String TAG = "MainActivity";
 
     ClearLogServiceConnection mClearLogConnection;
     ClearLogService.LogBinder mClearLogBinder;
@@ -88,13 +96,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button read_app_cpu = (Button) findViewById(R.id.read_app_cpu);
+        read_app_cpu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        // 开启service，进行定期的删除日志
-        /**启动 NavCtrlMonitorConnection*/
-        mClearLogConnection = new ClearLogServiceConnection();
-        Intent navCtrlMonitorIntent = new Intent(this, ClearLogService.class);
-        bindService(navCtrlMonitorIntent, mClearLogConnection, BIND_AUTO_CREATE);
+                String totalMemory = CMTManagerService.getTotalMemory() + "";
+
+                String availableMemory = CMTManagerService.getAvailableMemory(MainActivity.this) + "";
+
+                String usedPercentMemoryValue = CMTManagerService.getUsedPercentValue(MainActivity.this) + "";
+
+                String processMemoryRate1 = CMTManagerService.getProcessMemoryRate(MainActivity.this, 20646) + "";
+                String processMemoryRate2 = CMTManagerService.getProcessMemoryRate(MainActivity.this, 8459) + "";
+
+                String totalCpuRate = CMTManagerService.getTotalCpuRate() + "";
+
+                String str = "totalMem:" + totalMemory + " " +
+                        "availableMemory:" + availableMemory + " " +
+                        "userdPercentMemory:" + usedPercentMemoryValue + " " +
+                        "processMemoryRate:" + processMemoryRate1 + " " + processMemoryRate2 + " " +
+                        "totalCpuRate:" + totalCpuRate;
+
+                show.setText(str);
+            }
+        });
+
+
     }
+
 
     @Override
     protected void onDestroy() {
