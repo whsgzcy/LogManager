@@ -1,5 +1,9 @@
 ## android 日志 收集器
 
+**cpu memory 日志**
+
+需求，收集当前设备运行状态的 cpu 以及 memory数据，这里推荐iflytek的itest4.0可以做个参考，可以把代码运行一下，算一下，唯一需要注意的点是 一个 进程名 可能有多个 子主pid
+
 **日志追踪**
 
 如果有这么一个场景，对于1000(one thousand)台Android设备，每个设备 最多存储1G的log文件，那么日志的总量就是1000*1G(此处为最大值)，对于这么庞大的文件，不可能一个一个登上去查找日志，我们都知道，修复问题，可能修复的是一类问题。
@@ -10,7 +14,7 @@
 check_log()
 {
     GAME_LIST=`ssh $HOSTCHECK $IP "grep -c "\"${WORDS}\"" /sdcard/xxx/*.log "`
-     
+
     for line in $GAME_LIST
     do
        echo  $line
@@ -32,7 +36,7 @@ check_log()
 ```
 LogRecorder的具体用法网上百度，我也是直接拿过来用，他的好处不仅可以指定对应的类别的log，而且也会对写入文件大小的做限制
 
-LogRecorder.java 
+LogRecorder.java
 
 logRecorderError = new LogRecorder.Builder(this)
                 .setLogFolderName("asdasdsa")
@@ -42,14 +46,14 @@ logRecorderError = new LogRecorder.Builder(this)
                 .setLogLevel(2)
                 .build();
         logRecorderError.start();
-        
+
 ClearLogService.java
 
 ...
 
 ScheduledThreadPoolExecutor mScheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1);
 mScheduledThreadPoolExecutor.scheduleAtFixedRate(mFileThread, 0, 2, TimeUnit.HOURS);
-        
+
         Thread mFileThread = new Thread() {
 
         @Override
@@ -66,11 +70,11 @@ mScheduledThreadPoolExecutor.scheduleAtFixedRate(mFileThread, 0, 2, TimeUnit.HOU
         }
     };
  ...
- 
+
  FileUtil.java
- 
+
  在当前类对集合进行操作的时候没有再分配内存去承载他，只是对对应地址的元素做了修改
- 
+
  /**
      * 获取指定文件夹下所有文件的名称
      *
