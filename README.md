@@ -25,7 +25,7 @@ check_log()
 
 ```
 
-**需求**
+**需求1**
 
 想象有这么一个场景，当线上的问题发生之后再去抓log，这时抓到的log很可能会对不上，这会对开发造成不小的影响，本文就是为了解决这个问题。
 
@@ -137,6 +137,47 @@ mScheduledThreadPoolExecutor.scheduleAtFixedRate(mFileThread, 0, 2, TimeUnit.HOU
 
         return list;
     }
+```
+
+**需求2**
+
+需求，要对上述代码进行改造，实现 进程起来之后 对未满指定大小的log文件进行追加，不去再生成一个新的文件
+
+```
+//将下述代码添加至对应位置即可
+...
+            // 自然排序
+            // 找出最新的log文件
+            // 判断是都大于100M
+
+            // 是 则 新建文件
+
+            // 否 则 继续写入当前文件
+
+            List<String> lists = FileUtils.getFilesAllName(Constants.APP_LOG_PATH);
+
+            if (lists != null || !lists.isEmpty()) {
+                Collections.sort(lists);
+
+                int lastest = lists.size() - 1;
+                String absoluteFilePath = lists.get(lastest);
+
+                long fileSize = FileUtils.getLogFileLength(absoluteFilePath);
+                currentFileSize = fileSize;
+
+                NLog.d(TAG, "absoluteFilePath = " + absoluteFilePath);
+                NLog.d(TAG, "fileSize = " + fileSize);
+
+                if (fileSize < 100 * 1024 * 1024) {
+                    try {
+                        out = new FileOutputStream(absoluteFilePath, true);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    return;
+                }
+            }
+...
 ```
 
 **注**
